@@ -1,0 +1,101 @@
+{% if description %}
+/** {{ description }} */
+{% endif %}
+{% if enum %}
+{% include "Includes/Enum.stencil" enum %}
+{% elif aliasType %}
+public typealias {{ type }} = {{ aliasType }}
+{% elif additionalPropertiesType and allProperties.count == 0 %}
+public typealias {{ type }} = [String: {{ additionalPropertiesType }}]
+{% elif discriminatorType %}
+public enum {{ type }}: Codable, Equatable, Content {
+  {% for subType in discriminatorType.subTypes %}
+  case {{ subType.name}}({{ subType.type }})
+  {% endfor %}
+  {% if options.enumUndecodableCase %}
+  case undecodable
+  {% endif %}
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: StringCodingKey.self)
+    let discriminator: String = try container.decode("{{ discriminatorType.discriminatorProperty }}")
+    switch discriminator {
+    {% for name, subType in discriminatorType.mapping %}
+    case "{{ name }}":
+      self = .{{ subType.name}}(try {{ subType.type }}(from: decoder))
+    {% endfor %}
+    default:
+    {% if options.enumUndecodableCase %}
+      self = .undecodable
+    {% else %}
+      throw DecodingError.dataCorrupted(DecodingError.Context.init(codingPath: decoder.codingPath, debugDescription: "Couldn't find type to decode with discriminator \(discriminator)"))
+    {% endif %}
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.singleValueContainer()
+    switch self {
+    {% for subType in discriminatorType.subTypes %}
+    case .{{ subType.name}}(let content):
+      try container.encode(content)
+    {% endfor %}
+    {% if options.enumUndecodableCase %}
+    case .undecodable:
+      try container.encode("undecodable")
+    {% endif %}
+    }
+  }
+}
+{% else %}
+public {{ options.modelType }} {{ type }}: {% if parent %}{{ parent.type }}{% else %}{% if options.modelProtocol %}{{ options.modelProtocol }}{% else %}Codable, Equatable, Content{% endif %}{% endif %} {
+  {% for enum in enums %}
+  {% if not enum.isGlobal %}
+
+  {% filter indent:4 %}{% include "Includes/Enum.stencil" enum %}{% endfilter %}
+  {% endif %}
+  {% endfor %}
+  {% for property in properties %}
+
+  {% if property.description %}
+  /** {{ property.description }} */
+  {% endif %}
+  public {% if options.mutableModels %}var{% else %}let{% endif %} {{ property.name }}: {{ property.optionalType }}
+  {% endfor %}
+  {% if additionalPropertiesType %}
+
+  public {% if options.mutableModels %}var{% else %}let{% endif %} additionalProperties: [String: {{ additionalPropertiesType }}] = [:]
+  {% endif %}
+  {% for schema in schemas %}
+
+  {% filter indent:4 %}{% include "Includes/Model.stencil" schema %}{% endfilter %}
+  {% endfor %}
+
+  public {% if parent %}{% if properties.count == 0 %}override {% endif %}{% endif %}init({% for property in allProperties %}{{ property.name }}: {{ property.optionalType }}{% ifnot property.required %} = nil{% endif %}{% ifnot forloop.last %}, {% endif %}{% endfor %}) {
+    {% for property in properties %}
+    self.{{ property.name }} = {{ property.name }}
+    {% endfor %}
+    {% if parent %}
+    super.init({% for property in parent.allProperties %}{{ property.name }}: {{ property.name }}{% ifnot forloop.last %}, {% endif %}{% endfor %})
+    {% endif %}
+  }
+
+  {% if additionalPropertiesType %}
+
+  public subscript(key: String) -> {{ additionalPropertiesType }}? {
+    get {
+      return additionalProperties[key]
+    }
+    set {
+      additionalProperties[key] = newValue
+    }
+  }
+  {% endif %}
+  
+  public enum CodingKeys: String, CodingKey {
+    {% for property in properties %}
+    case {{ property.name }} = "{{ property.value }}"
+    {% endfor %}
+  }
+}
+{% endif %}
