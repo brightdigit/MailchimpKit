@@ -1,0 +1,1350 @@
+{
+    "x-doc-structure": {
+        "resources": {
+            "root": {
+                "title": "API Root",
+                "description": "The API root resource links to all other resources available in the API. Calling the root directory also returns details about the Mailchimp user account.",
+                "paths": [
+                    "/"
+                ],
+                "subResources": []
+            },
+            "chimp-chatter": {
+                "title": "Chimp Chatter Activity",
+                "description": "Get the latest Chimp Chatter activity from your account.",
+                "paths": [
+                    "/activity-feed/chimp-chatter"
+                ]
+            },
+            "authorized-apps": {
+                "title": "Authorized Apps",
+                "description": "Manage registered, connected apps for your Mailchimp account with the Authorized Apps endpoints.",
+                "paths": [
+                    "/authorized-apps",
+                    "/authorized-apps/{app_id}"
+                ]
+            },
+            "automation": {
+                "title": "Automations",
+                "description": "Mailchimp's classic automations feature lets you build a series of emails that send to subscribers when triggered by a specific date, activity, or event. Use the API to manage Automation workflows, emails, and queues. Does not include Customer Journeys.",
+                "paths": [
+                    "/automations",
+                    "/automations/{workflow_id}",
+                    "/automations/{workflow_id}/actions/start-all-emails",
+                    "/automations/{workflow_id}/actions/pause-all-emails",
+                    "/automations/{workflow_id}/actions/archive"
+                ],
+                "subResources": [
+                    "automation-email",
+                    "automation-removed-subscribers"
+                ]
+            },
+            "automation-email": {
+                "title": "Emails",
+                "description": "Manage individual emails in a classic automation workflow.",
+                "paths": [
+                    "/automations/{workflow_id}/emails",
+                    "/automations/{workflow_id}/emails/{workflow_email_id}",
+                    "/automations/{workflow_id}/emails/{workflow_email_id}/actions/pause",
+                    "/automations/{workflow_id}/emails/{workflow_email_id}/actions/start"
+                ],
+                "subResources": [
+                    "automation-email-queue"
+                ]
+            },
+            "automation-email-queue": {
+                "title": "Queue",
+                "description": "Manage list member queues for classic automation emails.",
+                "paths": [
+                    "/automations/{workflow_id}/emails/{workflow_email_id}/queue",
+                    "/automations/{workflow_id}/emails/{workflow_email_id}/queue/{subscriber_hash}"
+                ],
+                "subResources": []
+            },
+            "automation-removed-subscribers": {
+                "title": "Removed Subscribers",
+                "description": "Remove subscribers from a classic automation workflow.",
+                "paths": [
+                    "/automations/{workflow_id}/removed-subscribers",
+                    "/automations/{workflow_id}/removed-subscribers/{subscriber_hash}"
+                ],
+                "subResources": []
+            },
+            "batch-operations": {
+                "title": "Batch Operations",
+                "description": "Use batch operations to complete multiple operations with a single call.",
+                "paths": [
+                    "/batches",
+                    "/batches/{batch_id}"
+                ]
+            },
+            "batch-webhooks": {
+                "title": "Batch Webhooks",
+                "description": "Manage webhooks for batch operations. ",
+                "paths": [
+                    "/batch-webhooks",
+                    "/batch-webhooks/{batch_webhook_id}"
+                ]
+            },
+            "account-exports": {
+                "title": "Account Exports",
+                "description": "Generate a new export or download a finished export.",
+                "paths": [
+                    "/account-exports",
+                    "/account-exports/{export_id}"
+                ]
+            },
+            "campaigns": {
+                "title": "Campaigns",
+                "description": "Campaigns are how you send emails to your Mailchimp list. Use the Campaigns API calls to manage campaigns in your Mailchimp account.",
+                "paths": [
+                    "/campaigns",
+                    "/campaigns/{campaign_id}",
+                    "/campaigns/{campaign_id}/actions/cancel-send",
+                    "/campaigns/{campaign_id}/actions/send",
+                    "/campaigns/{campaign_id}/actions/schedule",
+                    "/campaigns/{campaign_id}/actions/unschedule",
+                    "/campaigns/{campaign_id}/actions/pause",
+                    "/campaigns/{campaign_id}/actions/resume",
+                    "/campaigns/{campaign_id}/actions/replicate",
+                    "/campaigns/{campaign_id}/actions/test",
+                    "/campaigns/{campaign_id}/actions/create-resend"
+                ],
+                "subResources": [
+                    "campaign-feedback",
+                    "campaign-checklist",
+                    "campaign-content"
+                ]
+            },
+            "campaign-feedback": {
+                "title": "Feedback",
+                "description": "Post comments, reply to team feedback, and send test emails while you're working together on a Mailchimp campaign.",
+                "paths": [
+                    "/campaigns/{campaign_id}/feedback",
+                    "/campaigns/{campaign_id}/feedback/{feedback_id}"
+                ]
+            },
+            "campaign-checklist": {
+                "title": "Send Checklist",
+                "description": "Review the send checklist for your campaign, and resolve any issues before sending.",
+                "paths": [
+                    "/campaigns/{campaign_id}/send-checklist"
+                ]
+            },
+            "campaign-content": {
+                "title": "Content",
+                "description": "Manage the HTML, plain-text, and template content for your Mailchimp campaigns.",
+                "paths": [
+                    "/campaigns/{campaign_id}/content"
+                ]
+            },
+            "connected-sites": {
+                "title": "Connected Sites",
+                "description": "Manage sites you've connected to your Mailchimp account.",
+                "paths": [
+                    "/connected-sites",
+                    "/connected-sites/{connected_site_id}",
+                    "/connected-sites/{connected_site_id}/actions/verify-script-installation"
+                ]
+            },
+            "conversations": {
+                "title": "Conversations",
+                "description": "Conversation tracking lets you view subscribers' replies to your campaigns in your Mailchimp account.",
+                "paths": [
+                    "/conversations",
+                    "/conversations/{conversation_id}"
+                ],
+                "subResources": [
+                    "conversation-messages"
+                ]
+            },
+            "conversation-messages": {
+                "title": "Messages",
+                "description": "Manage messages in a specific campaign conversation.",
+                "paths": [
+                    "/conversations/{conversation_id}/messages",
+                    "/conversations/{conversation_id}/messages/{message_id}"
+                ]
+            },
+            "customer-journeys-journeys-steps-actions": {
+                "title": "Customer Journeys",
+                "description": "Manage Customer Journey automated workflows",
+                "paths": [
+                    "/customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger"
+                ],
+                "subResources": []
+            },
+            "file-manager": {
+                "title": "File Manager",
+                "description": "Manage files for your Mailchimp account. The File Manager is a place to store images, documents, and other files you include or link to in your campaigns, templates, or signup forms.",
+                "paths": [],
+                "subResources": [
+                    "file-manager-folders",
+                    "file-manager-files"
+                ]
+            },
+            "file-manager-folders": {
+                "title": "File Manager Folders",
+                "description": "Manage specific folders in the File Manager for your Mailchimp account.",
+                "paths": [
+                    "/file-manager/folders",
+                    "/file-manager/folders/{folder_id}"
+                ],
+                "subResources": [
+                    "file-manager-folders-files"
+                ]
+            },
+            "file-manager-files": {
+                "title": "File Manager Files",
+                "description": "Manage specific files in the File Manager for your Mailchimp account.",
+                "paths": [
+                    "/file-manager/files",
+                    "/file-manager/files/{file_id}"
+                ]
+            },
+            "file-manager-folders-files": {
+                "title": "Files in Folder",
+                "description": "Manage specific files in a folder.",
+                "paths": [
+                    "/file-manager/folders/{folder_id}/files"
+                ]
+            },
+            "landing-pages": {
+                "title": "Landing Pages",
+                "description": "Manage your Landing Pages, including publishing and unpublishing.",
+                "paths": [
+                    "/landing-pages",
+                    "/landing-pages/{page_id}",
+                    "/landing-pages/{page_id}/actions/publish",
+                    "/landing-pages/{page_id}/actions/unpublish"
+                ],
+                "subResources": [
+                    "landing-pages-content"
+                ]
+            },
+            "landing-pages-content": {
+                "title": "Content",
+                "description": "The HTML content for your Mailchimp landing pages.",
+                "paths": [
+                    "/landing-pages/{page_id}/content"
+                ]
+            },
+            "lists": {
+                "title": "Lists/Audiences",
+                "description": "Your Mailchimp list, also known as your audience, is where you store and manage all of your contacts.",
+                "paths": [
+                    "/lists",
+                    "/lists/{list_id}"
+                ],
+                "subResources": [
+                    "interest-categories",
+                    "list-segments",
+                    "abuse-reports",
+                    "list-activity",
+                    "list-clients",
+                    "list-growth-history",
+                    "list-imports",
+                    "list-members",
+                    "list-merges",
+                    "list-webhooks",
+                    "list-signup-forms",
+                    "list-locations",
+                    "lists-tags-search",
+                    "prebuilt-segments",
+                    "list-preview-segment",
+                    "list-surveys",
+                    "list-sms-program"
+                ]
+            },
+            "list-members": {
+                "title": "Members",
+                "description": "Manage members of a specific Mailchimp list, including currently subscribed, unsubscribed, and bounced members.",
+                "paths": [
+                    "/lists/{list_id}/members",
+                    "/lists/{list_id}/members/{subscriber_hash}",
+                    "/lists/{list_id}/members/{subscriber_hash}/actions/delete-permanent"
+                ],
+                "subResources": [
+                    "list-member-activity",
+                    "list-member-activity-feed",
+                    "list-member-goal",
+                    "list-member-notes",
+                    "list-member-tags",
+                    "list-member-events"
+                ]
+            },
+            "list-merges": {
+                "title": "Merge Fields",
+                "description": "Manage merge fields for an audience. See [Merge Field documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/) for more.",
+                "paths": [
+                    "/lists/{list_id}/merge-fields",
+                    "/lists/{list_id}/merge-fields/{merge_id}"
+                ],
+                "subResources": []
+            },
+            "abuse-reports": {
+                "title": "Abuse Reports",
+                "description": "Manage abuse complaints for a specific list. An abuse complaint occurs when your recipient reports an email as spam in their mail program.",
+                "paths": [
+                    "/lists/{list_id}/abuse-reports",
+                    "/lists/{list_id}/abuse-reports/{report_id}"
+                ]
+            },
+            "list-activity": {
+                "title": "Activity",
+                "description": "Get recent daily, aggregated activity stats for your list. For example, view unsubscribes, signups, total emails sent, opens, clicks, and more, for up to 180 days.",
+                "paths": [
+                    "/lists/{list_id}/activity"
+                ]
+            },
+            "list-clients": {
+                "title": "Clients",
+                "description": "Get information about the most popular email clients for subscribers in a specific Mailchimp list.",
+                "paths": [
+                    "/lists/{list_id}/clients"
+                ]
+            },
+            "list-growth-history": {
+                "title": "Growth History",
+                "description": "View a summary of the month-by-month growth activity for a specific list.",
+                "paths": [
+                    "/lists/{list_id}/growth-history",
+                    "/lists/{list_id}/growth-history/{month}"
+                ]
+            },
+            "list-webhooks": {
+                "title": "Webhooks",
+                "description": "Manage webhooks for a specific Mailchimp list.",
+                "paths": [
+                    "/lists/{list_id}/webhooks",
+                    "/lists/{list_id}/webhooks/{webhook_id}"
+                ]
+            },
+            "list-surveys": {
+                "title": "Surveys",
+                "description": "Get survey data for this audience.",
+                "paths": [
+                    "/lists/{list_id}/surveys",
+                    "/lists/{list_id}/surveys/{survey_id}",
+                    "/lists/{list_id}/surveys/{survey_id}/actions/publish",
+                    "/lists/{list_id}/surveys/{survey_id}/actions/unpublish",
+                    "/lists/{list_id}/surveys/{survey_id}/actions/create-email"
+                ]
+            },
+            "interest-categories": {
+                "title": "Interest Categories",
+                "description": "Manage interest categories for a specific list. Interest categories organize interests, which are used to group subscribers based on their preferences. These correspond to 'group titles' in the Mailchimp application.",
+                "paths": [
+                    "/lists/{list_id}/interest-categories",
+                    "/lists/{list_id}/interest-categories/{interest_category_id}"
+                ],
+                "subResources": [
+                    "interests"
+                ]
+            },
+            "interests": {
+                "title": "Interests",
+                "description": "Manage interests for a specific Mailchimp list. Assign subscribers to interests to group them together. Interests are referred to as 'group names' in the Mailchimp application.",
+                "paths": [
+                    "/lists/{list_id}/interest-categories/{interest_category_id}/interests",
+                    "/lists/{list_id}/interest-categories/{interest_category_id}/interests/{interest_id}"
+                ]
+            },
+            "lists-tags-search": {
+                "title": "Tag Search",
+                "description": "Search for tags on a list by name.",
+                "paths": [
+                    "/lists/{list_id}/tag-search"
+                ]
+            },
+            "list-segments": {
+                "title": "Segments",
+                "description": "Manage segments and tags for a specific Mailchimp list. A segment is a section of your list that includes only those subscribers who share specific common field information. Tags are labels you create to help organize your contacts.",
+                "paths": [
+                    "/lists/{list_id}/segments",
+                    "/lists/{list_id}/segments/{segment_id}"
+                ],
+                "subResources": [
+                    "list-segment-members"
+                ]
+            },
+            "list-segment-members": {
+                "title": "Segment Members",
+                "description": "Manage list members in a saved segment.",
+                "paths": [
+                    "/lists/{list_id}/segments/{segment_id}/members",
+                    "/lists/{list_id}/segments/{segment_id}/members/{subscriber_hash}"
+                ]
+            },
+            "list-member-activity": {
+                "title": "Member Activity",
+                "description": "Get details about a subscriber's recent activity. Use the new activity-feed endpoint to access more events for a given contact.",
+                "paths": [
+                    "/lists/{list_id}/members/{subscriber_hash}/activity"
+                ]
+            },
+            "list-member-activity-feed": {
+                "title": "Member Activity Feed",
+                "description": "Get details about a subscriber's recent activity.",
+                "paths": [
+                    "/lists/{list_id}/members/{subscriber_hash}/activity-feed"
+                ]
+            },
+            "list-member-goal": {
+                "title": "Member Goals",
+                "description": "Get information about recent goal events for a specific list member.",
+                "paths": [
+                    "/lists/{list_id}/members/{subscriber_hash}/goals"
+                ]
+            },
+            "list-member-notes": {
+                "title": "Member Notes",
+                "description": "Retrieve recent notes for a specific list member.",
+                "paths": [
+                    "/lists/{list_id}/members/{subscriber_hash}/notes",
+                    "/lists/{list_id}/members/{subscriber_hash}/notes/{note_id}"
+                ]
+            },
+            "list-member-tags": {
+                "title": "Member Tags",
+                "description": "Manage all the tags that have been assigned to a contact.",
+                "paths": [
+                    "/lists/{list_id}/members/{subscriber_hash}/tags"
+                ]
+            },
+            "list-member-events": {
+                "title": "Events",
+                "description": "Use the Events endpoint to collect website or in-app actions and trigger targeted automations. ",
+                "paths": [
+                    "/lists/{list_id}/members/{subscriber_hash}/events"
+                ]
+            },
+            "list-signup-forms": {
+                "title": "Signup Forms",
+                "description": "Manage list signup forms.",
+                "paths": [
+                    "/lists/{list_id}/signup-forms"
+                ]
+            },
+            "list-locations": {
+                "title": "Locations",
+                "description": "Get the locations (countries) that the list's subscribers have been tagged to based on geocoding their IP address.",
+                "paths": [
+                    "/lists/{list_id}/locations"
+                ]
+            },
+            "reports": {
+                "title": "Reports",
+                "description": "Manage campaign reports for your Mailchimp account. All Reports endpoints are read-only. Mailchimp's campaign and automation reports analyze clicks, opens, subscribers' social activity, e-commerce data, and more. Note: Campaign IDs for A/B Testing Campaigns are available through the Campaign API Endpoint's Read method.",
+                "paths": [
+                    "/reports",
+                    "/reports/{campaign_id}"
+                ],
+                "subResources": [
+                    "campaign-abuse",
+                    "campaign-advice",
+                    "click-reports",
+                    "domain-performance-reports",
+                    "eepurl-reports",
+                    "email-activity-reports",
+                    "location-reports",
+                    "sent-to-reports",
+                    "sub-reports",
+                    "unsub-reports",
+                    "open-reports",
+                    "campaign-ecommerce-product-activity"
+                ]
+            },
+            "campaign-abuse": {
+                "title": "Campaign Abuse",
+                "description": "Get information about campaign abuse complaints.",
+                "paths": [
+                    "/reports/{campaign_id}/abuse-reports",
+                    "/reports/{campaign_id}/abuse-reports/{report_id}"
+                ]
+            },
+            "campaign-advice": {
+                "title": "Campaign Advice",
+                "description": "Get recent feedback based on a campaign's statistics.",
+                "paths": [
+                    "/reports/{campaign_id}/advice"
+                ]
+            },
+            "open-reports": {
+                "title": "Campaign Open Reports",
+                "description": "Get a detailed report about any emails in a specific campaign that were opened by the recipient. ",
+                "paths": [
+                    "/reports/{campaign_id}/open-details",
+                    "/reports/{campaign_id}/open-details/{subscriber_hash}"
+                ]
+            },
+            "click-reports": {
+                "title": "Click Reports",
+                "description": "Get detailed information about links clicked in campaigns.",
+                "paths": [
+                    "/reports/{campaign_id}/click-details",
+                    "/reports/{campaign_id}/click-details/{link_id}"
+                ],
+                "subResources": [
+                    "link-clickers"
+                ]
+            },
+            "campaign-ecommerce-product-activity": {
+                "title": "Ecommerce Product Activity",
+                "description": "Ecommerce product activity report for a campaign.",
+                "paths": [
+                    "/reports/{campaign_id}/ecommerce-product-activity"
+                ]
+            },
+            "link-clickers": {
+                "title": "Click Reports Members",
+                "description": "Get information about specific subscribers who clicked on links in a campaign.",
+                "paths": [
+                    "/reports/{campaign_id}/click-details/{link_id}/members",
+                    "/reports/{campaign_id}/click-details/{link_id}/members/{subscriber_hash}"
+                ]
+            },
+            "domain-performance-reports": {
+                "title": "Domain Performance",
+                "description": "Get statistics for the top-performing domains from a campaign.",
+                "paths": [
+                    "/reports/{campaign_id}/domain-performance"
+                ]
+            },
+            "eepurl-reports": {
+                "title": "EepURL Reports",
+                "description": "Get a summary of social activity for the campaign, tracked by EepURL.",
+                "paths": [
+                    "/reports/{campaign_id}/eepurl"
+                ]
+            },
+            "email-activity-reports": {
+                "title": "Email Activity",
+                "description": "Get list member activity for a specific campaign.",
+                "paths": [
+                    "/reports/{campaign_id}/email-activity",
+                    "/reports/{campaign_id}/email-activity/{subscriber_hash}"
+                ]
+            },
+            "location-reports": {
+                "title": "Location",
+                "description": "Get top open locations for a specific campaign.",
+                "paths": [
+                    "/reports/{campaign_id}/locations"
+                ]
+            },
+            "sent-to-reports": {
+                "title": "Sent To",
+                "description": "Get details about campaign recipients.",
+                "paths": [
+                    "/reports/{campaign_id}/sent-to",
+                    "/reports/{campaign_id}/sent-to/{subscriber_hash}"
+                ]
+            },
+            "sub-reports": {
+                "title": "Sub-Reports",
+                "description": "A list of reports for child campaigns of a specific parent campaign. For example, use this endpoint to view Multivariate, RSS, and A/B Testing Campaign reports.",
+                "paths": [
+                    "/reports/{campaign_id}/sub-reports"
+                ]
+            },
+            "unsub-reports": {
+                "title": "Unsubscribes",
+                "description": "Get information about list members who unsubscribed from a specific campaign.",
+                "paths": [
+                    "/reports/{campaign_id}/unsubscribed",
+                    "/reports/{campaign_id}/unsubscribed/{subscriber_hash}"
+                ]
+            },
+            "templates": {
+                "title": "Templates",
+                "description": "Manage your Mailchimp templates. A template is an HTML file used to create the layout and basic design for a campaign. ",
+                "paths": [
+                    "/templates",
+                    "/templates/{template_id}"
+                ],
+                "subResources": [
+                    "template-default-content"
+                ]
+            },
+            "template-default-content": {
+                "title": "Default Content",
+                "description": "Manage the default content for a Mailchimp template.",
+                "paths": [
+                    "/templates/{template_id}/default-content"
+                ]
+            },
+            "template-folders": {
+                "title": "Template Folders",
+                "description": "Organize your templates using folders.",
+                "paths": [
+                    "/template-folders",
+                    "/template-folders/{folder_id}"
+                ]
+            },
+            "campaign-folders": {
+                "title": "Campaign Folders",
+                "description": "Organize your campaigns using folders.",
+                "paths": [
+                    "/campaign-folders",
+                    "/campaign-folders/{folder_id}"
+                ]
+            },
+            "ecommerce-stores": {
+                "title": "E-commerce Stores",
+                "description": "Connect your E-commerce Store to Mailchimp to take advantage of powerful reporting and personalization features and to learn more about your customers.",
+                "paths": [
+                    "/ecommerce/stores",
+                    "/ecommerce/stores/{store_id}"
+                ],
+                "subResources": [
+                    "ecommerce-customers",
+                    "ecommerce-orders",
+                    "ecommerce-products",
+                    "ecommerce-carts",
+                    "ecommerce-promo-rules"
+                ]
+            },
+            "ecommerce-customers": {
+                "title": "Customers",
+                "description": "Add Customers to your Store to track their orders and to view E-Commerce Data for your Mailchimp lists and campaigns. Each Customer is connected to a Mailchimp list member, so adding a Customer can also add or update a list member.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/customers",
+                    "/ecommerce/stores/{store_id}/customers/{customer_id}"
+                ]
+            },
+            "ecommerce-promo-rules": {
+                "title": "Promo Rules",
+                "description": "Promo Rules help you create promo codes for your campaigns. Promo Rules define generic information about promo codes like expiration time, start time, amount of discount being offered etc. For a given promo rule you can define if it's a percentage discount or a fixed amount and if it applies for the order as a whole or if it's per item or free shipping. You can then create promo codes for this price rule. Promo codes contain the actual code that is applied at checkout along with some other information. Price Rules have one to many relationship with promo codes.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/promo-rules",
+                    "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}"
+                ],
+                "subResources": [
+                    "ecommerce-promo-codes"
+                ]
+            },
+            "ecommerce-promo-codes": {
+                "title": "Promo Codes",
+                "description": "Promo codes can be created for a given price rule. All the promo codes under a price rule share the generic information defined for that rule like the amount, type, expiration date etc. Promo code defines the more specific information about a promo code like the actual code, redemption_url, usage_count, etc that's unique to a code. Promo Code must be defined under a promo rule.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes",
+                    "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}"
+                ]
+            },
+            "ecommerce-orders": {
+                "title": "Orders",
+                "description": "Orders represent successful e-commerce transactions, and this data can be used to provide more detailed campaign reports, track sales, and personalize emails to your targeted consumers, and view other e-commerce data in your Mailchimp account.",
+                "paths": [
+                    "/ecommerce/orders",
+                    "/ecommerce/stores/{store_id}/orders",
+                    "/ecommerce/stores/{store_id}/orders/{order_id}"
+                ],
+                "subResources": [
+                    "ecommerce-order-lines"
+                ]
+            },
+            "ecommerce-order-lines": {
+                "title": "Order Lines",
+                "description": "Each Order contains one or more Order Lines, which represent a specific Product Variant that a Customer purchases.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/orders/{order_id}/lines",
+                    "/ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}"
+                ]
+            },
+            "ecommerce-products": {
+                "title": "Products",
+                "description": "E-commerce items for sale in your store need to be created as Products so you can add the items to a Cart or an Order. Each Product requires at least one Product Variant.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/products",
+                    "/ecommerce/stores/{store_id}/products/{product_id}"
+                ],
+                "subResources": [
+                    "ecommerce-product-variants",
+                    "ecommerce-product-images"
+                ]
+            },
+            "ecommerce-product-variants": {
+                "title": "Product Variants",
+                "description": "A Product Variant represents a specific item for purchase, and is contained within a parent Product. At least one Product Variant is required for each Product.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/products/{product_id}/variants",
+                    "/ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}"
+                ]
+            },
+            "ecommerce-product-images": {
+                "title": "Product Images",
+                "description": "A Product Image represents a specific product image.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/products/{product_id}/images",
+                    "/ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}"
+                ]
+            },
+            "ecommerce-carts": {
+                "title": "Carts",
+                "description": "Use Carts to represent unfinished e-commerce transactions. This can be used to create an Abandoned Cart workflow, or to save a consumer\u2019s shopping cart pending a successful Order.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/carts",
+                    "/ecommerce/stores/{store_id}/carts/{cart_id}"
+                ],
+                "subResources": [
+                    "ecommerce-cart-lines"
+                ]
+            },
+            "ecommerce-cart-lines": {
+                "title": "Cart Lines",
+                "description": "Each Cart contains one or more Cart Lines, which represent a specific Product Variant that a Customer has added to their shopping cart.",
+                "paths": [
+                    "/ecommerce/stores/{store_id}/carts/{cart_id}/lines",
+                    "/ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}"
+                ]
+            },
+            "facebook-ads": {
+                "title": "Facebook Ads",
+                "description": "Get information about Facebook Ads.",
+                "paths": [
+                    "/facebook-ads",
+                    "/facebook-ads/{outreach_id}"
+                ]
+            },
+            "ping": {
+                "title": "Ping",
+                "description": "A health check endpoint for Mailchimp API 3.0.",
+                "paths": [
+                    "/ping"
+                ]
+            },
+            "reporting": {
+                "title": "Reporting",
+                "description": "Reporting for various campaign types.",
+                "paths": [],
+                "subResources": [
+                    "reporting-facebook-ads",
+                    "reporting-google-ads",
+                    "reporting-landing-pages",
+                    "reporting-postcards",
+                    "reporting-social-posts",
+                    "reporting-surveys",
+                    "reporting-websites"
+                ]
+            },
+            "reporting-facebook-ads": {
+                "title": "Facebook Ads",
+                "description": "Get information about Facebook Ad reports. ",
+                "paths": [
+                    "/reporting/facebook-ads",
+                    "/reporting/facebook-ads/{outreach_id}",
+                    "/reporting/facebook-ads/{outreach_id}/ecommerce-product-activity"
+                ]
+            },
+            "reporting-landing-pages": {
+                "title": "Landing Pages",
+                "description": "Get information about Landing Page reports.",
+                "paths": [
+                    "/reporting/landing-pages",
+                    "/reporting/landing-pages/{outreach_id}"
+                ]
+            },
+            "reporting-surveys": {
+                "title": "Surveys",
+                "description": "Get an overall report for a [hosted survey](https://mailchimp.com/help/create-a-survey/).",
+                "paths": [
+                    "/reporting/surveys",
+                    "/reporting/surveys/{survey_id}"
+                ],
+                "subResources": [
+                    "reporting-surveys-questions",
+                    "reporting-surveys-responses"
+                ]
+            },
+            "reporting-surveys-questions": {
+                "title": "Survey Questions",
+                "description": "Get reports by question on a [hosted survey](https://mailchimp.com/help/create-a-survey/).",
+                "paths": [
+                    "/reporting/surveys/{survey_id}/questions",
+                    "/reporting/surveys/{survey_id}/questions/{question_id}"
+                ],
+                "subResources": [
+                    "reporting-surveys-questions-answers"
+                ]
+            },
+            "reporting-surveys-questions-answers": {
+                "title": "Survey Question Answers",
+                "description": "Answers to specific questions on a [hosted survey](https://mailchimp.com/help/create-a-survey/).",
+                "paths": [
+                    "/reporting/surveys/{survey_id}/questions/{question_id}/answers"
+                ]
+            },
+            "reporting-surveys-responses": {
+                "title": "Survey Responses",
+                "description": "Get survey response reports for a [hosted survey](https://mailchimp.com/help/create-a-survey/).",
+                "paths": [
+                    "/reporting/surveys/{survey_id}/responses",
+                    "/reporting/surveys/{survey_id}/responses/{response_id}"
+                ]
+            },
+            "search-campaigns": {
+                "title": "Search Campaigns",
+                "description": "Search all of an account's campaigns for the specified query terms.",
+                "paths": [
+                    "/search-campaigns"
+                ]
+            },
+            "search-members": {
+                "title": "Search Members",
+                "description": "Search the account or a specific list for members that match the specified query terms.",
+                "paths": [
+                    "/search-members"
+                ]
+            },
+            "verified-domains": {
+                "x-hidden": false,
+                "title": "Verified Domains",
+                "description": "Manage the domains on your account that can be used for sending email campaigns.",
+                "paths": [
+                    "/verified-domains",
+                    "/verified-domains/{domain_name}",
+                    "/verified-domains/{domain_name}/actions/verify"
+                ],
+                "subresources": []
+            }
+        }
+    },
+    "swagger": "2.0",
+    "info": {
+        "version": "3.0.55",
+        "title": "Mailchimp Marketing API",
+        "contact": {
+            "name": "Mailchimp API Support",
+            "email": "apihelp@mailchimp.com"
+        },
+        "x-permalink": "https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/marketing.json"
+    },
+    "host": "server.api.mailchimp.com",
+    "basePath": "/3.0",
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        }
+    },
+    "security": [
+        {
+            "basicAuth": []
+        }
+    ],
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json",
+        "application/problem+json"
+    ],
+    "paths": {
+        "/": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Root/Namespace.json"
+        },
+        "/activity-feed/chimp-chatter": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/ActivityFeed/ChimpChatter/Collection.json"
+        },
+        "/account-exports": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/AccountExports/Collection.json"
+        },
+        "/account-exports/{export_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/AccountExports/Instance.json"
+        },
+        "/authorized-apps": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/AuthorizedApps/Collection.json"
+        },
+        "/authorized-apps/{app_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/AuthorizedApps/Instance.json"
+        },
+        "/automations": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Collection.json"
+        },
+        "/automations/{workflow_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Instance.json"
+        },
+        "/automations/{workflow_id}/actions/pause-all-emails": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Actions/Pause-All-Emails.json"
+        },
+        "/automations/{workflow_id}/actions/start-all-emails": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Actions/Start-All-Emails.json"
+        },
+        "/automations/{workflow_id}/actions/archive": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Actions/Archive.json"
+        },
+        "/automations/{workflow_id}/emails": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Emails/Collection.json"
+        },
+        "/automations/{workflow_id}/emails/{workflow_email_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Emails/Instance.json"
+        },
+        "/automations/{workflow_id}/emails/{workflow_email_id}/queue": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Emails/Queue/Collection.json"
+        },
+        "/automations/{workflow_id}/emails/{workflow_email_id}/queue/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Emails/Queue/Instance.json"
+        },
+        "/automations/{workflow_id}/emails/{workflow_email_id}/actions/pause": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Emails/Actions/Pause.json"
+        },
+        "/automations/{workflow_id}/emails/{workflow_email_id}/actions/start": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/Emails/Actions/Start.json"
+        },
+        "/automations/{workflow_id}/removed-subscribers": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/RemovedSubscribers/Collection.json"
+        },
+        "/automations/{workflow_id}/removed-subscribers/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Automations/RemovedSubscribers/Instance.json"
+        },
+        "/batches": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Batches/Collection.json"
+        },
+        "/batches/{batch_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Batches/Instance.json"
+        },
+        "/batch-webhooks": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/BatchWebhooks/Collection.json"
+        },
+        "/batch-webhooks/{batch_webhook_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/BatchWebhooks/Instance.json"
+        },
+        "/template-folders": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/TemplateFolders/Collection.json"
+        },
+        "/template-folders/{folder_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/TemplateFolders/Instance.json"
+        },
+        "/campaign-folders": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/CampaignFolders/Collection.json"
+        },
+        "/campaign-folders/{folder_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/CampaignFolders/Instance.json"
+        },
+        "/campaigns": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Collection.json"
+        },
+        "/campaigns/{campaign_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Instance.json"
+        },
+        "/campaigns/{campaign_id}/actions/cancel-send": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Cancel-Send.json"
+        },
+        "/campaigns/{campaign_id}/actions/replicate": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Replicate.json"
+        },
+        "/campaigns/{campaign_id}/actions/send": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Send.json"
+        },
+        "/campaigns/{campaign_id}/actions/schedule": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Schedule.json"
+        },
+        "/campaigns/{campaign_id}/actions/unschedule": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Unschedule.json"
+        },
+        "/campaigns/{campaign_id}/actions/test": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Test.json"
+        },
+        "/campaigns/{campaign_id}/actions/pause": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Pause.json"
+        },
+        "/campaigns/{campaign_id}/actions/resume": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Resume.json"
+        },
+        "/campaigns/{campaign_id}/actions/create-resend": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Actions/Create-Resend.json"
+        },
+        "/campaigns/{campaign_id}/content": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Content/Instance.json"
+        },
+        "/campaigns/{campaign_id}/feedback": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Feedback/Collection.json"
+        },
+        "/campaigns/{campaign_id}/feedback/{feedback_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Feedback/Instance.json"
+        },
+        "/campaigns/{campaign_id}/send-checklist": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Campaigns/Checklist/Instance.json"
+        },
+        "/connected-sites": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/ConnectedSites/Collection.json"
+        },
+        "/connected-sites/{connected_site_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/ConnectedSites/Instance.json"
+        },
+        "/connected-sites/{connected_site_id}/actions/verify-script-installation": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/ConnectedSites/Actions/Verify-Script-Installation.json"
+        },
+        "/conversations": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Conversations/Collection.json"
+        },
+        "/conversations/{conversation_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Conversations/Instance.json"
+        },
+        "/conversations/{conversation_id}/messages": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Conversations/Messages/Collection.json"
+        },
+        "/conversations/{conversation_id}/messages/{message_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Conversations/Messages/Instance.json"
+        },
+        "/customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/CustomerJourneys/Journeys/Steps/Actions/Trigger.json"
+        },
+        "/file-manager/files": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FileManager/Files/Collection.json"
+        },
+        "/file-manager/files/{file_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FileManager/Files/Instance.json"
+        },
+        "/file-manager/folders": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FileManager/Folders/Collection.json"
+        },
+        "/file-manager/folders/{folder_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FileManager/Folders/Instance.json"
+        },
+        "/file-manager/folders/{folder_id}/files": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FileManager/Folders/Files/Collection.json"
+        },
+        "/lists": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Collection.json"
+        },
+        "/lists/{list_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Instance.json"
+        },
+        "/lists/{list_id}/abuse-reports": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Abuse/Collection.json"
+        },
+        "/lists/{list_id}/abuse-reports/{report_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Abuse/Instance.json"
+        },
+        "/lists/{list_id}/activity": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Activity/Collection.json"
+        },
+        "/lists/{list_id}/clients": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Clients/Collection.json"
+        },
+        "/lists/{list_id}/growth-history": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Growth/Collection.json"
+        },
+        "/lists/{list_id}/growth-history/{month}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Growth/Instance.json"
+        },
+        "/lists/{list_id}/interest-categories": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/InterestCategories/Collection.json"
+        },
+        "/lists/{list_id}/interest-categories/{interest_category_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/InterestCategories/Instance.json"
+        },
+        "/lists/{list_id}/interest-categories/{interest_category_id}/interests": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Interests/Collection.json"
+        },
+        "/lists/{list_id}/interest-categories/{interest_category_id}/interests/{interest_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Interests/Instance.json"
+        },
+        "/lists/{list_id}/segments": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Segments/Collection.json"
+        },
+        "/lists/{list_id}/segments/{segment_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Segments/Instance.json"
+        },
+        "/lists/{list_id}/segments/{segment_id}/members": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Segments/Members/Collection.json"
+        },
+        "/lists/{list_id}/segments/{segment_id}/members/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Segments/Members/Instance.json"
+        },
+        "/lists/{list_id}/tag-search": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/TagSearch.json"
+        },
+        "/lists/{list_id}/members": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Collection.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Instance.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/activity": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Activity.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/activity-feed": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/ActivityFeed/Collection.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/tags": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Tags.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/events": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Events.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/goals": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Goals.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/notes": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Notes/Collection.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/notes/{note_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Notes/Instance.json"
+        },
+        "/lists/{list_id}/members/{subscriber_hash}/actions/delete-permanent": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Actions/Delete-Permanent.json"
+        },
+        "/lists/{list_id}/merge-fields": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/MergeFields/Collection.json"
+        },
+        "/lists/{list_id}/merge-fields/{merge_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/MergeFields/Instance.json"
+        },
+        "/lists/{list_id}/webhooks": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Webhooks/Collection.json"
+        },
+        "/lists/{list_id}/webhooks/{webhook_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Webhooks/Instance.json"
+        },
+        "/lists/{list_id}/signup-forms": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/SignupForms/Collection.json"
+        },
+        "/lists/{list_id}/locations": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Locations/Collection.json"
+        },
+        "/lists/{list_id}/surveys": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Surveys/Collection.json"
+        },
+        "/lists/{list_id}/surveys/{survey_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Surveys/Instance.json"
+        },
+        "/lists/{list_id}/surveys/{survey_id}/actions/publish": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Surveys/Actions/Publish.json"
+        },
+        "/lists/{list_id}/surveys/{survey_id}/actions/unpublish": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Surveys/Actions/Unpublish.json"
+        },
+        "/lists/{list_id}/surveys/{survey_id}/actions/create-email": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Lists/Surveys/Actions/Create-Email.json"
+        },
+        "/landing-pages": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/LandingPages/Collection.json"
+        },
+        "/landing-pages/{page_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/LandingPages/Instance.json"
+        },
+        "/landing-pages/{page_id}/actions/publish": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/LandingPages/Actions/Publish.json"
+        },
+        "/landing-pages/{page_id}/actions/unpublish": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/LandingPages/Actions/Unpublish.json"
+        },
+        "/landing-pages/{page_id}/content": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/LandingPages/Content/Instance.json"
+        },
+        "/reports": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Collection.json"
+        },
+        "/reports/{campaign_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Instance.json"
+        },
+        "/reports/{campaign_id}/abuse-reports": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Abuse/Collection.json"
+        },
+        "/reports/{campaign_id}/abuse-reports/{report_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Abuse/Instance.json"
+        },
+        "/reports/{campaign_id}/advice": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Advice/Collection.json"
+        },
+        "/reports/{campaign_id}/click-details": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/ClickDetails/Collection.json"
+        },
+        "/reports/{campaign_id}/click-details/{link_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/ClickDetails/Instance.json"
+        },
+        "/reports/{campaign_id}/click-details/{link_id}/members": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/ClickDetails/Members/Collection.json"
+        },
+        "/reports/{campaign_id}/click-details/{link_id}/members/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/ClickDetails/Members/Instance.json"
+        },
+        "/reports/{campaign_id}/open-details": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/OpenDetails/Collection.json"
+        },
+        "/reports/{campaign_id}/open-details/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/OpenDetails/Instance.json"
+        },
+        "/reports/{campaign_id}/domain-performance": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/DomainPerformance/Collection.json"
+        },
+        "/reports/{campaign_id}/eepurl": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Eepurl/Collection.json"
+        },
+        "/reports/{campaign_id}/email-activity": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/EmailActivity/Collection.json"
+        },
+        "/reports/{campaign_id}/email-activity/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/EmailActivity/Instance.json"
+        },
+        "/reports/{campaign_id}/locations": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Locations/Collection.json"
+        },
+        "/reports/{campaign_id}/sent-to": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/SentTo/Collection.json"
+        },
+        "/reports/{campaign_id}/sent-to/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/SentTo/Instance.json"
+        },
+        "/reports/{campaign_id}/sub-reports": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Sub/Collection.json"
+        },
+        "/reports/{campaign_id}/unsubscribed": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Unsubs/Collection.json"
+        },
+        "/reports/{campaign_id}/unsubscribed/{subscriber_hash}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/Unsubs/Instance.json"
+        },
+        "/reports/{campaign_id}/ecommerce-product-activity": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reports/EcommerceProductActivity/Collection.json"
+        },
+        "/templates": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Templates/Collection.json"
+        },
+        "/templates/{template_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Templates/Instance.json"
+        },
+        "/templates/{template_id}/default-content": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Templates/Default-Content/Collection.json"
+        },
+        "/ecommerce/orders": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Orders/Collection.json"
+        },
+        "/ecommerce/stores": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/carts": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Carts/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/carts/{cart_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Carts/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/carts/{cart_id}/lines": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Carts/Lines/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Carts/Lines/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/customers": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Customers/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/customers/{customer_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Customers/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/promo-rules": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Promorules/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Promorules/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Promorules/Promocodes/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Promorules/Promocodes/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/orders": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Orders/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/orders/{order_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Orders/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/orders/{order_id}/lines": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Orders/Lines/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Orders/Lines/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/products": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Products/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/products/{product_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Products/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/products/{product_id}/variants": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Products/Variants/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Products/Variants/Instance.json"
+        },
+        "/ecommerce/stores/{store_id}/products/{product_id}/images": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Products/Images/Collection.json"
+        },
+        "/ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ecommerce/Stores/Products/Images/Instance.json"
+        },
+        "/search-campaigns": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/SearchCampaigns/Collection.json"
+        },
+        "/search-members": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/SearchMembers/Collection.json"
+        },
+        "/ping": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Ping/Namespace.json"
+        },
+        "/facebook-ads": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FacebookAds/Collection.json"
+        },
+        "/facebook-ads/{outreach_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/FacebookAds/Instance.json"
+        },
+        "/reporting/facebook-ads": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/FacebookAds/Collection.json"
+        },
+        "/reporting/facebook-ads/{outreach_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/FacebookAds/Instance.json"
+        },
+        "/reporting/facebook-ads/{outreach_id}/ecommerce-product-activity": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/FacebookAds/EcommerceProductActivity/Collection.json"
+        },
+        "/reporting/landing-pages/{outreach_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/LandingPages/Instance.json"
+        },
+        "/reporting/landing-pages": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/LandingPages/Collection.json"
+        },
+        "/reporting/surveys": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Collection.json"
+        },
+        "/reporting/surveys/{survey_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Instance.json"
+        },
+        "/reporting/surveys/{survey_id}/questions": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Questions/Collection.json"
+        },
+        "/reporting/surveys/{survey_id}/questions/{question_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Questions/Instance.json"
+        },
+        "/reporting/surveys/{survey_id}/questions/{question_id}/answers": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Questions/Answers/Collection.json"
+        },
+        "/reporting/surveys/{survey_id}/responses": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Responses/Collection.json"
+        },
+        "/reporting/surveys/{survey_id}/responses/{response_id}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/Reporting/Surveys/Responses/Instance.json"
+        },
+        "/verified-domains/{domain_name}": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/VerifiedDomains/Instance.json"
+        },
+        "/verified-domains/{domain_name}/actions/verify": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/VerifiedDomains/VerifyDomain.json"
+        },
+        "/verified-domains": {
+            "$ref": "https://us22.api.mailchimp.com/schema/3.0/Paths/VerifiedDomains/Collection.json"
+        }
+    },
+    "definitions": {},
+    "externalDocs": {
+        "description": "Learn more with the full Mailchimp API documentation.",
+        "url": "https://mailchimp.com/developer/marketing/"
+    }
+}
